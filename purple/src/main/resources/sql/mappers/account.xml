@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.purple.project.account.service.AccountMapper">
+    <select id="selectList" resultType="hashMap">
+        SELECT
+            id,
+            pw
+        FROM
+            account
+    </select>
+    
+    <select id="selectAccount" resultType="hashMap" parameterType="hashMap">
+        SELECT
+            id,
+            pw
+        FROM
+            account
+        WHERE
+        	id = #{id}
+    </select>
+    
+    <insert id="insert" parameterType="hashMap">
+	
+		INSERT INTO account (
+               id,
+               pw
+	  	) VALUES (
+               #{id,	jdbcType=VARCHAR},
+               #{pw,	jdbcType=VARCHAR}
+        )
+	</insert>
+	
+	<update id="update" parameterType="hashMap">
+	
+		UPDATE
+			account
+		SET
+			pw = #{pw}
+		where
+			id = #{id}
+	</update>
+	
+	<update id="delete" parameterType="hashMap">
+	
+		DELETE FROM
+			account
+		where
+			id = #{id}
+			and pw = #{pw}
+	</update>
+</mapper>
